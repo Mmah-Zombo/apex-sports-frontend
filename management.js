@@ -205,23 +205,21 @@ async function loadAgents() {
 
 async function createAgent() {
   const userData = {
-    name: document.getElementById("name").value,
     email: document.getElementById("email").value,
-    password: document.getElementById("password").value,
     role: "Agent",
   }
 
   try {
-    const userResponse = await apiRequest("/users", {
-      method: "POST",
-      body: JSON.stringify(userData),
-    })
+    // const userResponse = await apiRequest("/users", {
+    //   method: "POST",
+    //   body: JSON.stringify(userData),
+    // })
 
-    if (!userResponse.ok) {
-      const error = await userResponse.json()
-      alert(`Error creating user: ${error.error}`)
-      return
-    }
+    // if (!userResponse.ok) {
+    //   const error = await userResponse.json()
+    //   alert(`Error creating user: ${error.error}`)
+    //   return
+    // }
 
     const usersResponse = await apiRequest("/users")
     const users = await usersResponse.json()
@@ -233,7 +231,7 @@ async function createAgent() {
     }
 
     const profileData = {
-      user_id: newUser.id,
+      user_id: Number(newUser.id),
       license_number: document.getElementById("license_number").value,
       years_experience: Number.parseInt(document.getElementById("years_experience").value),
     }
