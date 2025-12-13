@@ -1,45 +1,53 @@
 const API_BASE_URL = "http://localhost:8000/api"
 
 // Check authentication
-const token = localStorage.getItem("token")
+const token = localStorage.getItem("apex_auth_token")
 if (!token) {
   window.location.replace("../auth/login.html");
 }
 
 // Get agent ID from URL
 const urlParams = new URLSearchParams(window.location.search)
-const agentId = urlParams.get("id")
+const userId = urlParams.get("id")
+let agentId = null;
 
-if (!agentId) {
-  alert("Agent ID not found")
+if (!userId) {
+  alert("User ID not found")
   window.location.href = "agents.html"
 }
 
 // Load agent data
 async function loadAgent() {
   try {
-    const response = await fetch(`${API_BASE_URL}/agents/${agentId}`, {
+    const userResponse = await fetch(`${API_BASE_URL}/users/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
 
+    const agent = await userResponse.json()
+    agentId = agent.email
+    const response = await fetch(`${API_BASE_URL}/agent_profiles/${agent.email}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
     console.log(response)
     if (response.ok) {
       const agent = await response.json()
-      document.getElementById("firstName").value = agent.first_name
-      document.getElementById("lastName").value = agent.last_name
+      document.getElementById("name").value = agent.name
       document.getElementById("email").value = agent.email
-      document.getElementById("phoneNumber").value = agent.phone_number || ""
-      document.getElementById("licenseNumber").value = agent.license_number || ""
-      document.getElementById("agencyName").value = agent.agency_name || ""
+      document.getElementById("license_number").value = agent.license_number || ""
+      document.getElementById("years_experience").value = agent.years_experience || ""
     } else {
-      throw new Error("Failed to load agent")
+      console.error("Error loading agent:", error)
+      // throw new Error("Failed to load agent")
     }
   } catch (error) {
     console.error("Error loading agent:", error)
     // alert("Failed to load agent data")
-    window.location.href = "agents.html"
+    // window.location.href = "agents.html"
   }
 }
 
@@ -48,16 +56,14 @@ document.getElementById("editAgentForm").addEventListener("submit", async (e) =>
   e.preventDefault()
 
   const agentData = {
-    first_name: document.getElementById("firstName").value,
-    last_name: document.getElementById("lastName").value,
+    name: document.getElementById("name").value,
     email: document.getElementById("email").value,
-    phone_number: document.getElementById("phoneNumber").value || null,
-    license_number: document.getElementById("licenseNumber").value || null,
-    agency_name: document.getElementById("agencyName").value || null,
+    license_number: document.getElementById("license_number").value || null,
+    years_experience: Number(document.getElementById("years_experience").value) || null,
   }
 
   try {
-    const response = await fetch(`${API_BASE_URL}/agents/${agentId}`, {
+    const response = await fetch(`${API_BASE_URL}/agent_profiles/${agentId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -82,7 +88,7 @@ document.getElementById("editAgentForm").addEventListener("submit", async (e) =>
 // Logout functionality
 document.getElementById("logoutBtn").addEventListener("click", (e) => {
   e.preventDefault()
-  localStorage.removeItem("token")
+  localStorage.removeItem("apex_auth_token")
    window.location.replace("../auth/login.html");
 })
 

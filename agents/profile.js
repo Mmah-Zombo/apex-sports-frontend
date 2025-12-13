@@ -1,7 +1,7 @@
 const API_BASE_URL = "http://localhost:8000/api"
 
 // Check authentication
-const token = localStorage.getItem("token")
+const token = localStorage.getItem("apex_auth_token")
 if (!token) {
  window.location.replace("../auth/login.html");
 }
@@ -36,7 +36,7 @@ async function loadProfile() {
         })
       }
     } else if (response.status === 401) {
-      localStorage.removeItem("token")
+      localStorage.removeItem("apex_auth_token")
      window.location.replace("../auth/login.html");
     } else {
       throw new Error("Failed to load profile")
@@ -94,7 +94,7 @@ async function loadStatistics() {
 // Logout functionality
 document.getElementById("logoutBtn").addEventListener("click", (e) => {
   e.preventDefault()
-  localStorage.removeItem("token")
+  localStorage.removeItem("apex_auth_token")
  window.location.replace("../auth/login.html");
 })
 

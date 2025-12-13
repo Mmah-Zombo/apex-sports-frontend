@@ -469,17 +469,17 @@ async function deleteContract(id) {
 
 // Edit functions (placeholder - would need separate edit pages)
 function editPlayer(id) {
-  alert(`Edit player ${id} - This would redirect to an edit page`)
+  window.location.replace(`./player-edit.html?id=${id}`)
 }
 
 function editAgent(id) {
-  alert(`Edit agent ${id} - This would redirect to an edit page`)
+  window.location.replace(`./agent-edit.html?id=${id}`)
 }
 
 function editClub(id) {
-  alert(`Edit club ${id} - This would redirect to an edit page`)
+  window.location.replace(`./club-edit.html?id=${id}`)
 }
 
 function editContract(id) {
-  alert(`Edit contract ${id} - This would redirect to an edit page`)
+  window.location.replace(`./contract-edit.html?id=${id}`)
 }
