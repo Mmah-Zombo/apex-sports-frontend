@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - APEX Sports</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-gray-900 text-white">
+    <header class="bg-gray-800 shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-green-500">APEX Sports</div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-green-500 transition">Home</a>
+                    <a href="players.html" class="hover:text-green-500 transition">Players</a>
+                    <a href="agents.html" class="hover:text-green-500 transition">Agents</a>
+                    <a href="clubs.html" class="hover:text-green-500 transition">Clubs</a>
+                    <a href="contracts.html" class="hover:text-green-500 transition">Contracts</a>
+                    <a href="profile.html" class="text-green-500">Profile</a>
+                    <a href="#" id="logoutBtn" class="hover:text-green-500 transition">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl font-bold mb-8">My Profile</h1>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Profile Card -->
+                <div class="lg:col-span-1">
+                    <div class="bg-gray-800 rounded-lg p-6 shadow-xl">
+                        <div class="flex flex-col items-center">
+                            <div class="w-32 h-32 bg-green-500 rounded-full flex items-center justify-center text-4xl font-bold mb-4" id="avatarInitials">
+                                US
+                            </div>
+                            <h2 class="text-2xl font-bold mb-2" id="userName">Loading...</h2>
+                            <p class="text-gray-400 mb-4" id="userEmail">Loading...</p>
+                            <a href="profile-edit.html" 
+                                class="px-6 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition font-semibold">
+                                Edit Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Details -->
+                <div class="lg:col-span-2">
+                    <div class="bg-gray-800 rounded-lg p-8 shadow-xl">
+                        <h3 class="text-2xl font-bold mb-6">Account Information</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex justify-between py-3 border-b border-gray-700">
+                                <span class="text-gray-400">Username</span>
+                                <span class="font-semibold" id="profileUsername">Loading...</span>
+                            </div>
+                            
+                            <div class="flex justify-between py-3 border-b border-gray-700">
+                                <span class="text-gray-400">Email</span>
+                                <span class="font-semibold" id="profileEmail">Loading...</span>
+                            </div>
+                            
+                            <div class="flex justify-between py-3 border-b border-gray-700">
+                                <span class="text-gray-400">Account Status</span>
+                                <span class="font-semibold text-green-500" id="accountStatus">Active</span>
+                            </div>
+
+                            <div class="flex justify-between py-3 border-b border-gray-700">
+                                <span class="text-gray-400">Member Since</span>
+                                <span class="font-semibold" id="memberSince">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Activity Overview -->
+                    <div class="bg-gray-800 rounded-lg p-8 shadow-xl mt-8">
+                        <h3 class="text-2xl font-bold mb-6">Activity Overview</h3>
+                        
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="bg-gray-700 rounded-lg p-6">
+                                <div class="text-3xl font-bold text-green-500 mb-2" id="playerCount">0</div>
+                                <div class="text-gray-400">Players Managed</div>
+                            </div>
+                            
+                            <div class="bg-gray-700 rounded-lg p-6">
+                                <div class="text-3xl font-bold text-green-500 mb-2" id="agentCount">0</div>
+                                <div class="text-gray-400">Agents Registered</div>
+                            </div>
+                            
+                            <div class="bg-gray-700 rounded-lg p-6">
+                                <div class="text-3xl font-bold text-green-500 mb-2" id="clubCount">0</div>
+                                <div class="text-gray-400">Clubs Listed</div>
+                            </div>
+                            
+                            <div class="bg-gray-700 rounded-lg p-6">
+                                <div class="text-3xl font-bold text-green-500 mb-2" id="contractCount">0</div>
+                                <div class="text-gray-400">Active Contracts</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 mt-20">
+        <div class="container mx-auto px-6 py-8">
+            <div class="text-center text-gray-400">
+                <p>&copy; 2025 APEX Sports. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile - APEX Sports</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body class="bg-gray-900 text-white">
+    <header class="bg-gray-800 shadow-lg">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="text-2xl font-bold text-green-500">APEX Sports</div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-green-500 transition">Home</a>
+                    <a href="players.html" class="hover:text-green-500 transition">Players</a>
+                    <a href="agents.html" class="hover:text-green-500 transition">Agents</a>
+                    <a href="clubs.html" class="hover:text-green-500 transition">Clubs</a>
+                    <a href="contracts.html" class="hover:text-green-500 transition">Contracts</a>
+                    <a href="profile.html" class="text-green-500">Profile</a>
+                    <a href="#" id="logoutBtn" class="hover:text-green-500 transition">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <div class="max-w-3xl mx-auto">
+            <div class="mb-8">
+                <a href="profile.html" class="text-green-500 hover:text-green-400 transition">&larr; Back to Profile</a>
+                <h1 class="text-4xl font-bold mt-4">Edit Profile</h1>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-8 shadow-xl mb-8">
+                <h2 class="text-2xl font-bold mb-6">Account Information</h2>
+                <form id="editProfileForm">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Username *</label>
+                            <input type="text" id="username" required 
+                                class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-green-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Email *</label>
+                            <input type="email" id="email" required 
+                                class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-green-500">
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex gap-4">
+                        <button type="submit" 
+                            class="px-8 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition font-semibold">
+                            Update Profile
+                        </button>
+                        <a href="profile.html" 
+                            class="px-8 py-3 bg-gray-700 text-white rounded-lg hover:bg-gray-600 transition font-semibold inline-block">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="bg-gray-800 rounded-lg p-8 shadow-xl">
+                <h2 class="text-2xl font-bold mb-6">Change Password</h2>
+                <form id="changePasswordForm">
+                    <div class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Current Password *</label>
+                            <input type="password" id="currentPassword" required 
+                                class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-green-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">New Password *</label>
+                            <input type="password" id="newPassword" required minlength="6"
+                                class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-green-500">
+                            <p class="text-sm text-gray-400 mt-1">Minimum 6 characters</p>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Confirm New Password *</label>
+                            <input type="password" id="confirmPassword" required minlength="6"
+                                class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-green-500">
+                        </div>
+                    </div>
+
+                    <div class="mt-8">
+                        <button type="submit" 
+                            class="px-8 py-3 bg-green-500 text-white rounded-lg hover:bg-green-600 transition font-semibold">
+                            Change Password
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 mt-20">
+        <div class="container mx-auto px-6 py-8">
+            <div class="text-center text-gray-400">
+                <p>&copy; 2025 APEX Sports. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="profile-edit.js"></script>
+</body>
+</html>
