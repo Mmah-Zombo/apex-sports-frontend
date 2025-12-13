@@ -1,5 +1,5 @@
 // Management API base URL
-const API_BASE_URL = "http://yourdomain.com/api"
+const API_BASE_URL = "http://localhost:8000/api"
 
 // Get auth token from localStorage
 function getAuthToken() {
@@ -22,7 +22,7 @@ async function apiRequest(endpoint, options = {}) {
 
   if (response.status === 401) {
     alert("Session expired. Please login again.")
-    window.location.href = "login.html"
+    window.href = "/auth/login.html"
     throw new Error("Unauthorized")
   }
 

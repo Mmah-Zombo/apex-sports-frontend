@@ -1,5 +1,5 @@
 // Authentication API base URL - Update this to your API endpoint
-const API_BASE_URL = "http://yourdomain.com/api"
+const API_BASE_URL = "http://localhost:8000/api"
 
 // Store JWT token
 function setAuthToken(token) {
@@ -82,7 +82,7 @@ if (document.getElementById("loginForm")) {
       if (response.ok && data.token) {
         setAuthToken(data.token)
         alert("Login successful!")
-        window.location.href = "players.html"
+        window.location.replace("../agents/players.html");
       } else {
         alert(`Login failed: ${data.error || "Invalid credentials"}`)
       }
