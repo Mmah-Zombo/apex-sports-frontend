@@ -47,7 +47,7 @@ if (document.getElementById("registerForm")) {
 
       if (response.ok) {
         alert("Registration successful! Please login.")
-        window.location.href = "login.html"
+        window.location.replace("./auth/login.html");
       } else {
         alert(`Registration failed: ${data.error || "Unknown error"}`)
       }
@@ -98,7 +98,7 @@ function checkAuth() {
   const token = getAuthToken()
   if (!token) {
     alert("Please login to access this page.")
-    window.location.href = "login.html"
+    window.location.replace("./auth/login.html");
     return false
   }
   return true
@@ -107,5 +107,5 @@ function checkAuth() {
 // Logout function
 function logout() {
   clearAuthToken()
-  window.location.href = "login.html"
+  window.location.replace("./auth/login.html");
 }

@@ -3,7 +3,7 @@ const API_BASE_URL = "http://localhost:8000/api"
 // Check authentication
 const token = localStorage.getItem("token")
 if (!token) {
-  window.location.href = "login.html"
+   window.location.replace("../auth/login.html");
 }
 
 // Get contract ID from URL
@@ -132,7 +132,7 @@ document.getElementById("editContractForm").addEventListener("submit", async (e)
 document.getElementById("logoutBtn").addEventListener("click", (e) => {
   e.preventDefault()
   localStorage.removeItem("token")
-  window.location.href = "login.html"
+   window.location.replace("../auth/login.html");
 })
 
 // Initialize

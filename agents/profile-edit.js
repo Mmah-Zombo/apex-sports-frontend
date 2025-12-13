@@ -3,7 +3,7 @@ const API_BASE_URL = "http://localhost:8000/api"
 // Check authentication
 const token = localStorage.getItem("token")
 if (!token) {
-  window.location.href = "login.html"
+ window.location.replace("../auth/login.html");
 }
 
 // Load current user data
@@ -21,7 +21,7 @@ async function loadUserData() {
       document.getElementById("email").value = user.email
     } else if (response.status === 401) {
       localStorage.removeItem("token")
-      window.location.href = "login.html"
+     window.location.replace("../auth/login.html");
     } else {
       throw new Error("Failed to load user data")
     }
@@ -107,7 +107,7 @@ document.getElementById("changePasswordForm").addEventListener("submit", async (
 document.getElementById("logoutBtn").addEventListener("click", (e) => {
   e.preventDefault()
   localStorage.removeItem("token")
-  window.location.href = "login.html"
+ window.location.replace("../auth/login.html");
 })
 
 // Initialize

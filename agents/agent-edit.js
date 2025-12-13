@@ -3,7 +3,7 @@ const API_BASE_URL = "http://localhost:8000/api"
 // Check authentication
 const token = localStorage.getItem("token")
 if (!token) {
-  window.location.href = "login.html"
+  window.location.replace("../auth/login.html");
 }
 
 // Get agent ID from URL
@@ -24,6 +24,7 @@ async function loadAgent() {
       },
     })
 
+    console.log(response)
     if (response.ok) {
       const agent = await response.json()
       document.getElementById("firstName").value = agent.first_name
@@ -37,7 +38,7 @@ async function loadAgent() {
     }
   } catch (error) {
     console.error("Error loading agent:", error)
-    alert("Failed to load agent data")
+    // alert("Failed to load agent data")
     window.location.href = "agents.html"
   }
 }
@@ -82,7 +83,7 @@ document.getElementById("editAgentForm").addEventListener("submit", async (e) =>
 document.getElementById("logoutBtn").addEventListener("click", (e) => {
   e.preventDefault()
   localStorage.removeItem("token")
-  window.location.href = "login.html"
+   window.location.replace("../auth/login.html");
 })
 
 // Initialize
