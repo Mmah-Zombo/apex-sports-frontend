@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Management - APEX SPORTS</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img class="logo-img" src="../img/apex-logo-2.png" alt="website logo">
+                </div>
+                <nav class="nav">
+                    <a href="players.html" class="nav-link">PLAYERS</a>
+                    <a href="agents.html" class="nav-link active">AGENTS</a>
+                    <a href="clubs.html" class="nav-link">CLUBS</a>
+                    <a href="contracts.html" class="nav-link">CONTRACTS</a>
+                </nav>
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <div class="hero-badge">MANAGEMENT PORTAL</div>
+                <h1 class="page-title">
+                    AGENT<br>
+                    <span class="highlight">MANAGEMENT</span>
+                </h1>
+                <p class="page-subtitle">
+                    View, create, and manage agent profiles and credentials.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agents Management Section -->
+    <section class="management-section">
+        <div class="container">
+            <div class="management-header">
+                <h2 class="section-title">ALL AGENTS</h2>
+                <a href="agent-create.html" class="btn btn-primary">+ ADD NEW AGENT</a>
+            </div>
+
+            <div class="table-wrapper">
+                <table class="data-table" id="agentsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>License Number</th>
+                            <th>Years Experience</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6" class="loading-cell">Loading agents...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 APEX SPORTS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="management.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadAgents();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Agent - APEX SPORTS</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img class="logo-img" src="../img/apex-logo-2.png" alt="website logo">
+                </div>
+                <nav class="nav">
+                    <a href="players.html" class="nav-link">PLAYERS</a>
+                    <a href="agents.html" class="nav-link active">AGENTS</a>
+                    <a href="clubs.html" class="nav-link">CLUBS</a>
+                    <a href="contracts.html" class="nav-link">CONTRACTS</a>
+                </nav>
+                <button class="menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="page-hero-content">
+                <h1 class="page-title">
+                    CREATE NEW<br>
+                    <span class="highlight">AGENT</span>
+                </h1>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="form-card">
+                <h2 class="form-card-title">Agent Information</h2>
+                <form class="contact-form" id="agentForm">
+                    <h3 class="form-section-title">User Account</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password *</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+
+                    <h3 class="form-section-title">Agent Profile</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="license_number">License Number *</label>
+                            <input type="text" id="license_number" name="license_number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="years_experience">Years of Experience *</label>
+                            <input type="number" id="years_experience" name="years_experience" min="0" max="50" required>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">CREATE AGENT</button>
+                        <a href="agents.html" class="btn btn-secondary">CANCEL</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 APEX SPORTS. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="management.js"></script>
+    <script>
+        document.getElementById('agentForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            createAgent();
+        });
+    </script>
+</body>
+</html>
