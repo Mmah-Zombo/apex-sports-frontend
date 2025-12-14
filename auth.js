@@ -14,6 +14,33 @@ function clearAuthToken() {
   localStorage.removeItem("apex_auth_token")
 }
 
+function setWithExpiry(key, value, ttl) {
+  const now = Date.now();
+
+  const item = {
+    value,
+    expiry: now + ttl, // ttl in milliseconds
+  };
+
+  localStorage.setItem(key, JSON.stringify(item));
+}
+
+function getWithExpiry(key) {
+  const itemStr = localStorage.getItem(key);
+  if (!itemStr) return null;
+
+  console.log(itemStr)
+  const item = JSON.parse(itemStr);
+  const now = Date.now();
+
+  if (now > item.expiry) {
+    localStorage.removeItem(key);
+    return null;
+  }
+
+  return item.value;
+}
+
 // Register Form Handler
 if (document.getElementById("registerForm")) {
   document.getElementById("registerForm").addEventListener("submit", async (e) => {
@@ -80,7 +107,7 @@ if (document.getElementById("loginForm")) {
       const data = await response.json()
 
       if (response.ok && data.token) {
-        setAuthToken(data.token)
+        setWithExpiry('apex_auth_token', data.token, 60 * 60 * 1000);
         alert("Login successful!")
         window.location.replace("../agents/players.html");
       } else {
@@ -95,7 +122,7 @@ if (document.getElementById("loginForm")) {
 
 // Check if user is authenticated (for protected pages)
 function checkAuth() {
-  const token = getAuthToken()
+  const token = getWithExpiry("apex_auth_token")
   if (!token) {
     alert("Please login to access this page.")
     window.location.replace("./auth/login.html");

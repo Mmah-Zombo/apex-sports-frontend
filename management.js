@@ -1,6 +1,38 @@
 // Management API base URL
 const API_BASE_URL = "http://localhost:8000/api"
 
+function setWithExpiry(key, value, ttl) {
+  const now = Date.now();
+
+  const item = {
+    value,
+    expiry: now + ttl, // ttl in milliseconds
+  };
+
+  localStorage.setItem(key, JSON.stringify(item));
+}
+
+function getWithExpiry(key) {
+  const itemStr = localStorage.getItem(key);
+  if (!itemStr) return null;
+
+  console.log(itemStr)
+  const item = JSON.parse(itemStr);
+  const now = Date.now();
+
+  if (now > item.expiry) {
+    localStorage.removeItem(key);
+    return null;
+  }
+
+  return item.value;
+}
+
+const token = getWithExpiry("apex_auth_token");
+if (!token) {
+  window.location.replace('../auth/login.html')
+}
+
 // Get auth token from localStorage
 function getAuthToken() {
   return localStorage.getItem("apex_auth_token")
@@ -8,8 +40,12 @@ function getAuthToken() {
 
 // Make authenticated API request
 async function apiRequest(endpoint, options = {}) {
-  const token = getAuthToken()
+  console.log(234)
+  // const token = getAuthToken();
+  const token = getWithExpiry("apex_auth_token");
 
+  console.log(token)
+  // console.log(token)
   const headers = {
     "Content-Type": "application/json",
     ...(token && { Authorization: `Bearer ${token}` }),
