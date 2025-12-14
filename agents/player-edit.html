@@ -37,19 +37,19 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-medium mb-2">First Name *</label>
-                            <input type="text" id="firstName" required 
+                            <input type="text" id="name" required 
                                 class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-green-500">
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium mb-2">Last Name *</label>
-                            <input type="text" id="lastName" required 
+                            <label class="block text-sm font-medium mb-2">Email *</label>
+                            <input type="email" id="email" required 
                                 class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-green-500">
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium mb-2">Date of Birth *</label>
-                            <input type="date" id="dateOfBirth" required 
+                            <label class="block text-sm font-medium mb-2">Age *</label>
+                            <input type="number" id="age" required 
                                 class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-green-500">
                         </div>
 
@@ -72,26 +72,36 @@
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium mb-2">Market Value (€)</label>
-                            <input type="number" id="marketValue" step="0.01" 
+                            <label class="block text-sm font-medium mb-2">Preferred Foot</label>
+                            <input type="text" id="preferred_foot" step="0.01" 
                                 class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-green-500">
                         </div>
 
                         <div>
-                            <label class="block text-sm font-medium mb-2">Agent</label>
-                            <select id="agentId" 
+                            <label class="block text-sm font-medium mb-2">Height (Cm)</label>
+                            <input type="number" id="height_cm" step="0.01" 
                                 class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-green-500">
-                                <option value="">No Agent</option>
-                            </select>
                         </div>
 
                         <div>
+                            <label class="block text-sm font-medium mb-2">Weight (Kg)</label>
+                           <input type="number" id="weight_kg" step="0.01" 
+                                class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-green-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Current Club<</label>
+                           <input type="text" id="current_club" step="0.01" 
+                                class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-green-500">
+                        </div>
+
+                        <!-- <div>
                             <label class="block text-sm font-medium mb-2">Current Club</label>
-                            <select id="currentClubId" 
+                            <select id="current_club" 
                                 class="w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:border-green-500">
                                 <option value="">Free Agent</option>
                             </select>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="mt-8 flex gap-4">

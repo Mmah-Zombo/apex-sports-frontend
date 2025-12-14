@@ -8,88 +8,99 @@ if (!token) {
 
 // Get player ID from URL
 const urlParams = new URLSearchParams(window.location.search)
-const playerId = urlParams.get("id")
+const userId = urlParams.get("id")
+let playerId = null;
 
-if (!playerId) {
-  alert("Player ID not found")
+if (!userId) {
+  alert("User ID not found")
   window.location.href = "players.html"
 }
 
 // Load player data
 async function loadPlayer() {
   try {
-    const response = await fetch(`${API_BASE_URL}/players/${playerId}`, {
+    const userResponse = await fetch(`${API_BASE_URL}/users/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
 
+    const player = await userResponse.json()
+    playerId = player.email
+    const response = await fetch(`${API_BASE_URL}/player_profiles/${player.email}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
     if (response.ok) {
       const player = await response.json()
-      document.getElementById("firstName").value = player.first_name
-      document.getElementById("lastName").value = player.last_name
-      document.getElementById("dateOfBirth").value = player.date_of_birth
+      document.getElementById("name").value = player.name
+      document.getElementById("preferred_foot").value = player.preferred_foot
+      document.getElementById("weight_kg").value = player.weight_kg
       document.getElementById("nationality").value = player.nationality
+      document.getElementById("email").value = player.email
       document.getElementById("position").value = player.position
-      document.getElementById("marketValue").value = player.market_value || ""
-      document.getElementById("agentId").value = player.agent_id || ""
-      document.getElementById("currentClubId").value = player.current_club_id || ""
+      document.getElementById("height_cm").value = player.height_cm || ""
+      document.getElementById("age").value = player.age || ""
+      document.getElementById("current_club").value = player.current_club || ""
     } else {
-      throw new Error("Failed to load player")
+      console.log(response)
+      // throw new Error("Failed to load player")
     }
   } catch (error) {
     console.error("Error loading player:", error)
-    alert("Failed to load player data")
-    window.location.href = "players.html"
+    // alert("Failed to load player data")
+    // window.location.href = "players.html"
   }
 }
 
 // Load agents for dropdown
 async function loadAgents() {
-  try {
-    const response = await fetch(`${API_BASE_URL}/agents`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+  // try {
+  //   const response = await fetch(`${API_BASE_URL}/agents`, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   })
 
-    if (response.ok) {
-      const agents = await response.json()
-      const agentSelect = document.getElementById("agentId")
-      agents.forEach((agent) => {
-        const option = document.createElement("option")
-        option.value = agent.id
-        option.textContent = `${agent.first_name} ${agent.last_name}`
-        agentSelect.appendChild(option)
-      })
-    }
-  } catch (error) {
-    console.error("Error loading agents:", error)
-  }
+  //   if (response.ok) {
+  //     const agents = await response.json()
+  //     const agentSelect = document.getElementById("agentId")
+  //     agents.forEach((agent) => {
+  //       const option = document.createElement("option")
+  //       option.value = agent.id
+  //       option.textContent = `${agent.first_name} ${agent.last_name}`
+  //       agentSelect.appendChild(option)
+  //     })
+  //   }
+  // } catch (error) {
+  //   console.error("Error loading agents:", error)
+  // }
 }
 
 // Load clubs for dropdown
 async function loadClubs() {
-  try {
-    const response = await fetch(`${API_BASE_URL}/clubs`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+  // try {
+  //   const response = await fetch(`${API_BASE_URL}/clubs`, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   })
 
-    if (response.ok) {
-      const clubs = await response.json()
-      const clubSelect = document.getElementById("currentClubId")
-      clubs.forEach((club) => {
-        const option = document.createElement("option")
-        option.value = club.id
-        option.textContent = club.name
-        clubSelect.appendChild(option)
-      })
-    }
-  } catch (error) {
-    console.error("Error loading clubs:", error)
-  }
+  //   if (response.ok) {
+  //     const clubs = await response.json()
+  //     const clubSelect = document.getElementById("currentClubId")
+  //     clubs.forEach((club) => {
+  //       const option = document.createElement("option")
+  //       option.value = club.id
+  //       option.textContent = club.name
+  //       clubSelect.appendChild(option)
+  //     })
+  //   }
+  // } catch (error) {
+  //   console.error("Error loading clubs:", error)
+  // }
 }
 
 // Handle form submission
@@ -97,18 +108,19 @@ document.getElementById("editPlayerForm").addEventListener("submit", async (e) =
   e.preventDefault()
 
   const playerData = {
-    first_name: document.getElementById("firstName").value,
-    last_name: document.getElementById("lastName").value,
-    date_of_birth: document.getElementById("dateOfBirth").value,
+    name: document.getElementById("name").value,
+    preferred_foot: document.getElementById("preferred_foot").value,
+    weight_kg: Number.parseFloat(document.getElementById("weight_kg").value) || nullå,
     nationality: document.getElementById("nationality").value,
     position: document.getElementById("position").value,
-    market_value: Number.parseFloat(document.getElementById("marketValue").value) || null,
-    agent_id: document.getElementById("agentId").value || null,
-    current_club_id: document.getElementById("currentClubId").value || null,
+    email: document.getElementById("email").value,
+    height_cm: Number.parseFloat(document.getElementById("height_cm").value) || null,
+    age: Number(document.getElementById("age").value) || null,
+    current_club: document.getElementById("current_club").value || null,
   }
 
   try {
-    const response = await fetch(`${API_BASE_URL}/players/${playerId}`, {
+    const response = await fetch(`${API_BASE_URL}/player_profiles/${playerId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

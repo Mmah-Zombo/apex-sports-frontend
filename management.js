@@ -79,24 +79,22 @@ async function loadPlayers() {
 
 async function createPlayer() {
   const userData = {
-    name: document.getElementById("name").value,
     email: document.getElementById("email").value,
-    password: document.getElementById("password").value,
     role: "Player",
   }
 
   try {
     // Create user account
-    const userResponse = await apiRequest("/users", {
-      method: "POST",
-      body: JSON.stringify(userData),
-    })
+    // const userResponse = await apiRequest("/users", {
+    //   method: "POST",
+    //   body: JSON.stringify(userData),
+    // })
 
-    if (!userResponse.ok) {
-      const error = await userResponse.json()
-      alert(`Error creating user: ${error.error}`)
-      return
-    }
+    // if (!userResponse.ok) {
+    //   const error = await userResponse.json()
+    //   // alert(`Error creating user: ${error.error}`)
+    //   return
+    // }
 
     // Get the user ID from response or fetch the user
     const usersResponse = await apiRequest("/users")
@@ -105,12 +103,12 @@ async function createPlayer() {
 
     if (!newUser) {
       alert("User created but could not find user ID")
-      return
+      // return
     }
 
     // Create player profile
     const profileData = {
-      user_id: newUser.id,
+      user_id: Number(newUser.id),
       position: document.getElementById("position").value,
       age: Number.parseInt(document.getElementById("age").value),
       height_cm: Number.parseInt(document.getElementById("height_cm").value),
