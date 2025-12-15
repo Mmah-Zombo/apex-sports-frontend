@@ -1,5 +1,5 @@
 // Authentication API base URL - Update this to your API endpoint
-const API_BASE_URL = "http://localhost:8000/api"
+const API_BASE_URL = "https://apex-football.free.nf/api"
 
 // Store JWT token
 function setAuthToken(token) {

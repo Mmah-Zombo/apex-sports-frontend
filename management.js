@@ -1,5 +1,5 @@
 // Management API base URL
-const API_BASE_URL = "http://localhost:8000/api"
+const API_BASE_URL = "https://apex-football.free.nf/api"
 
 function setWithExpiry(key, value, ttl) {
   const now = Date.now();
