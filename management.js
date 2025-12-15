@@ -433,7 +433,7 @@ async function loadContracts() {
                 <td>${agent ? agent.name : "Unknown"}</td>
                 <td>${contract.start_date}</td>
                 <td>${contract.end_date}</td>
-                <td>€${Number.parseFloat(contract.salary).toLocaleString()}</td>
+                <td>LE${Number.parseFloat(contract.salary).toLocaleString()}</td>
                 <td><span class="status-badge status-${contract.status.toLowerCase()}">${contract.status}</span></td>
                 <td class="action-buttons">
                     <button class="btn-action btn-edit" onclick="editContract(${contract.id})">Edit</button>

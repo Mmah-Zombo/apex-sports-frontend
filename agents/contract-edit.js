@@ -34,7 +34,7 @@ if (!contractId) {
 // Load players for dropdown
 async function loadPlayers() {
   try {
-    const response = await fetch(`${API_BASE_URL}/players`, {
+    const response = await fetch(`${API_BASE_URL}/player_profiles`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -42,11 +42,11 @@ async function loadPlayers() {
 
     if (response.ok) {
       const players = await response.json()
-      const playerSelect = document.getElementById("playerId")
+      const playerSelect = document.getElementById("player_user_id")
       players.forEach((player) => {
         const option = document.createElement("option")
-        option.value = player.id
-        option.textContent = `${player.first_name} ${player.last_name}`
+        option.value = player.user_id
+        option.textContent = `${player.name}`
         playerSelect.appendChild(option)
       })
     }
@@ -66,7 +66,7 @@ async function loadClubs() {
 
     if (response.ok) {
       const clubs = await response.json()
-      const clubSelect = document.getElementById("clubId")
+      const clubSelect = document.getElementById("club_id")
       clubs.forEach((club) => {
         const option = document.createElement("option")
         option.value = club.id
@@ -90,14 +90,14 @@ async function loadContract() {
 
     if (response.ok) {
       const contract = await response.json()
-      document.getElementById("playerId").value = contract.player_id
-      document.getElementById("clubId").value = contract.club_id
+      document.getElementById("player_user_id").value = contract.player_user_id
+      document.getElementById("club_id").value = contract.club_id
       document.getElementById("startDate").value = contract.start_date
       document.getElementById("endDate").value = contract.end_date
       document.getElementById("salary").value = contract.salary
       document.getElementById("status").value = contract.status
-      document.getElementById("bonusClauses").value = contract.bonus_clauses || ""
     } else {
+      console.log(response)
       throw new Error("Failed to load contract")
     }
   } catch (error) {
@@ -112,14 +112,14 @@ document.getElementById("editContractForm").addEventListener("submit", async (e)
   e.preventDefault()
 
   const contractData = {
-    player_id: Number.parseInt(document.getElementById("playerId").value),
-    club_id: Number.parseInt(document.getElementById("clubId").value),
+    player_user_id: Number.parseInt(document.getElementById("player_user_id").value),
+    club_id: Number.parseInt(document.getElementById("club_id").value),
     start_date: document.getElementById("startDate").value,
     end_date: document.getElementById("endDate").value,
     salary: Number.parseFloat(document.getElementById("salary").value),
     status: document.getElementById("status").value,
-    bonus_clauses: document.getElementById("bonusClauses").value || null,
   }
+  console.log(contractData)
 
   try {
     const response = await fetch(`${API_BASE_URL}/contracts/${contractId}`, {
