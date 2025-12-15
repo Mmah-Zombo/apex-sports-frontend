@@ -66,6 +66,7 @@ if (document.getElementById("registerForm")) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Origin": "https://apex-sports-frontend.onrender.com"
         },
         body: JSON.stringify(formData),
       })
@@ -100,6 +101,7 @@ if (document.getElementById("loginForm")) {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Origin": "https://apex-sports-frontend.onrender.com"
         },
         body: JSON.stringify(formData),
       })
