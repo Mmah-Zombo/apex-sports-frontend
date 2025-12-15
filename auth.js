@@ -74,7 +74,7 @@ if (document.getElementById("registerForm")) {
 
       if (response.ok) {
         alert("Registration successful! Please login.")
-        window.location.replace("./auth/login.html");
+        window.location.replace("./login.html");
       } else {
         alert(`Registration failed: ${data.error || "Unknown error"}`)
       }
