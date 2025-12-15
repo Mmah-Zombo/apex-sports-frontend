@@ -20,6 +20,7 @@
                     <a href="agents.html" class="nav-link">AGENTS</a>
                     <a href="clubs.html" class="nav-link">CLUBS</a>
                     <a href="contracts.html" class="nav-link active">CONTRACTS</a>
+                    <a href="#" id="logoutBtn" class="nav-link">LOGOUT</a>
                 </nav>
                 <button class="menu-toggle" aria-label="Toggle menu">
                     <span></span>
@@ -93,6 +94,12 @@
         document.addEventListener('DOMContentLoaded', () => {
             loadContracts();
         });
+
+        document.getElementById("logoutBtn").addEventListener("click", (e) => {
+            e.preventDefault()
+            localStorage.removeItem("apex_auth_token")
+            window.location.replace("../auth/login.html");
+        })
     </script>
 </body>
 </html>
