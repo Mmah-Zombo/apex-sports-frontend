@@ -43,11 +43,9 @@ async function loadClub() {
     if (response.ok) {
       const club = await response.json()
       document.getElementById("name").value = club.name
-      document.getElementById("country").value = club.country
-      document.getElementById("city").value = club.city
+      document.getElementById("location").value = club.location
       document.getElementById("league").value = club.league || ""
-      document.getElementById("foundedYear").value = club.founded_year || ""
-      document.getElementById("stadiumName").value = club.stadium_name || ""
+      document.getElementById("manager_name").value = club.manager_name || ""
     } else {
       throw new Error("Failed to load club")
     }
@@ -64,11 +62,9 @@ document.getElementById("editClubForm").addEventListener("submit", async (e) => 
 
   const clubData = {
     name: document.getElementById("name").value,
-    country: document.getElementById("country").value,
-    city: document.getElementById("city").value,
+    location: document.getElementById("location").value,
     league: document.getElementById("league").value || null,
-    founded_year: Number.parseInt(document.getElementById("foundedYear").value) || null,
-    stadium_name: document.getElementById("stadiumName").value || null,
+    manager_name: document.getElementById("manager_name").value || null,
   }
 
   try {
@@ -82,6 +78,7 @@ document.getElementById("editClubForm").addEventListener("submit", async (e) => 
     })
 
     if (response.ok) {
+      console.log(response)
       alert("Club updated successfully!")
       window.location.href = "clubs.html"
     } else {

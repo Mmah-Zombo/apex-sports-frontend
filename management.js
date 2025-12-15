@@ -16,7 +16,6 @@ function getWithExpiry(key) {
   const itemStr = localStorage.getItem(key);
   if (!itemStr) return null;
 
-  console.log(itemStr)
   const item = JSON.parse(itemStr);
   const now = Date.now();
 
@@ -356,7 +355,7 @@ async function createClub() {
     name: document.getElementById("name").value,
     location: document.getElementById("location").value,
     league: document.getElementById("league").value,
-    manager_user_id: document.getElementById("manager_user_id").value || null,
+    manager_email: document.getElementById("manager_email").value || null,
   }
 
   try {
