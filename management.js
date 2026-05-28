@@ -47,7 +47,6 @@ async function apiRequest(endpoint, options = {}) {
   // console.log(token)
   const headers = {
     "Content-Type": "application/json",
-    "Origin": "https://apex-sports-frontend.onrender.com",
     ...(token && { Authorization: `Bearer ${token}` }),
   }
 
